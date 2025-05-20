@@ -11,6 +11,7 @@ func printMessage() {
 
 func main() {
     go printMessage()
+    go printMessage()
     fmt.Println("Hello from main function")
     time.Sleep(time.Second)
 }
