@@ -5,13 +5,14 @@ import (
     "time"
 )
 
-func printMessage() {
-    fmt.Println("Hello from Goroutine")
+func printMessage(message chan string) {
+    time.Sleep(time.Second * 2)
+    message <- "Hello from Goroutine"
 }
 
 func main() {
-    go printMessage()
-    go printMessage()
+    message := make(chan string)
+    go printMessage(message)
     fmt.Println("Hello from main function")
-    time.Sleep(time.Second)
+    fmt.Println(<-message)
 }
